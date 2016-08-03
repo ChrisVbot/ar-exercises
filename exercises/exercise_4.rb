@@ -12,5 +12,12 @@ puts "----------"
 @store6 = Store.create(name: 'Yaletown', annual_revenue: 430000, mens_apparel: true, womens_apparel: true)
 
 @mens_stores = Store.where(mens_apparel: true)
-output = @mens_stores.select(:name, :annual_revenue).map{|row| row.name + " " + row.annual_revenue.to_s}
-puts output
+@mens_stores.each do |store|
+  puts store.name
+  puts store.annual_revenue
+end
+# output = @mens_stores.select(:name, :annual_revenue).map{|row| row.name + " " + row.annual_revenue.to_s}
+@womens_stores = Store.where(womens_apparel: true).where("annual_revenue < ?", 1000000)
+
+
+# 4. Do another fetch but this time load stores that carry women's apparel and are generating less than $1M in annual revenue.
